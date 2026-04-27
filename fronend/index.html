@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cliente del Servidor Jalando Machin</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background-color: #f4f4f9;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input {
+            padding: 8px;
+            margin-right: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn-get {
+            background-color: #4CAF50;
+        }
+
+        .btn-post {
+            background-color: #2196F3;
+        }
+
+        .btn-put {
+            background-color: #FF9800;
+        }
+
+        .btn-delete {
+            background-color: #f44336;
+        }
+
+        pre {
+            background: #333;
+            color: #00FF00;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            min-height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Panel de Control de Peticiones</h1>
+    <p>Asegúrate de que tu servidor de Node.js esté corriendo en el puerto 3000 antes de presionar los botones.</p>
+
+    <div class="card">
+        <h3>1. GET a '/' (Orrico)</h3>
+        <button class="btn-get" onclick="hacerGet('/')">Consultar Orrico</button>
+    </div>
+
+    <div class="card">
+        <h3>2. GET a '/Dagoberto'</h3>
+        <button class="btn-get" onclick="hacerGet('/Dagoberto')">Consultar Dagoberto</button>
+    </div>
+
+    <div class="card">
+        <h3>3. GET a '/Bravito' (con Query Param)</h3>
+        <input type="text" id="bravito-nombre" placeholder="Escribe un nombre">
+        <button class="btn-get" onclick="pedirBravito()">Enviar a Bravito</button>
+    </div>
+
+    <div class="card">
+        <h3>4. POST a '/Juanpi' (Enviar JSON)</h3>
+        <input type="text" id="juanpi-nombre" placeholder="Nombre del alumno">
+        <input type="number" id="juanpi-edad" placeholder="Edad">
+        <button class="btn-post" onclick="enviarJuanpi()">Enviar Datos POST</button>
+    </div>
+
+    <div class="card">
+        <h3>5. PUT a '/ActualizarNota' (Actualizar JSON)</h3>
+        <input type="number" id="put-id" placeholder="ID del Alumno">
+        <input type="number" id="put-calif" placeholder="Nueva Calificación">
+        <button class="btn-put" onclick="actualizarNota()">Actualizar PUT</button>
+    </div>
+
+    <div class="card">
+        <h3>6. DELETE a '/Expulsar' (Eliminar por URL)</h3>
+        <input type="text" id="delete-nombre" placeholder="Nombre a expulsar">
+        <button class="btn-delete" onclick="borrarAlumno()">Ejecutar DELETE</button>
+    </div>
+
+    <h2>Respuesta del Servidor:</h2>
+    <pre id="consola">Esperando peticiones...</pre>
+
+    <script>
+        const API_URL = 'http://localhost:3000';
+        const consola = document.getElementById('consola');
+
+        // Función auxiliar para mostrar los textos en pantalla
+        function mostrarRespuesta(texto) {
+            consola.textContent = `> ${texto}`;
+        }
+
+        // Petición GET genérica
+        async function hacerGet(ruta) {
+            try {
+                const res = await fetch(API_URL + ruta);
+                const texto = await res.text();
+                mostrarRespuesta(texto);
+            } catch (error) {
+                mostrarRespuesta("Error conectando al servidor. ¿Está prendido?");
+            }
+        }
+
+        // GET con Query Params (/Bravito)
+        async function pedirBravito() {
+            const nombre = document.getElementById('bravito-nombre').value;
+            hacerGet(`/Bravito?nombre=${nombre}`);
+        }
+
+        // Petición POST (/Juanpi)
+        async function enviarJuanpi() {
+            const nombre = document.getElementById('juanpi-nombre').value;
+            const edad = document.getElementById('juanpi-edad').value;
+
+            try {
+                const res = await fetch(API_URL + '/Juanpi', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nombre: nombre, edad: edad })
+                });
+                const texto = await res.text();
+                mostrarRespuesta(texto);
+            } catch (error) {
+                mostrarRespuesta("Error en POST");
+            }
+        }
+
+        // Petición PUT (/ActualizarNota)
+        async function actualizarNota() {
+            const id = document.getElementById('put-id').value;
+            const calif = document.getElementById('put-calif').value;
+
+            try {
+                const res = await fetch(API_URL + '/ActualizarNota', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ idAlumno: id, nuevaCalificacion: calif })
+                });
+                const texto = await res.text();
+                mostrarRespuesta(texto);
+            } catch (error) {
+                mostrarRespuesta("Error en PUT");
+            }
+        }
+
+        // Petición DELETE (/Expulsar)
+        async function borrarAlumno() {
+            const nombre = document.getElementById('delete-nombre').value;
+
+            try {
+                const res = await fetch(`${API_URL}/Expulsar/${nombre}`, {
+                    method: 'DELETE'
+                });
+                const texto = await res.text();
+                mostrarRespuesta(texto);
+            } catch (error) {
+                mostrarRespuesta("Error en DELETE");
+            }
+        }
+    </script>
+</body>
+
+</html>

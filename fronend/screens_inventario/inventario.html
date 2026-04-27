@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario - Dulcería</title>
+    <link href="../CSS/estilo_inventario.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <a href="../menu" class="btn-regresar">⬅ Regresar</a>
+
+    <div class="contenedor">
+        <header class="barra-superior">
+            <div class="espacio-vacio"></div>
+            <h1>Inventario</h1>
+            <a href="agregar.html"><button class="btn-agregar" id="btn-nuevo-registro">+</button></a>
+        </header>
+
+        <main class="area-contenido">
+            <div class="contenedor-tabla-responsiva">
+                <table class="tabla-inventario">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla">
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div id="modal-eliminar" class="modal-oculto"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 2000;">
+        <div
+            style="background: #ff6b6b; padding: 30px; border-radius: 30px; text-align: center; color: white; width: 350px; font-family: 'Montserrat', sans-serif;">
+            <div style="font-size: 50px; margin-bottom: 10px;">⚠️</div>
+            <h2 style="margin-bottom: 10px;">¿Estás seguro?</h2>
+            <p style="margin-bottom: 20px;">Este cambio no se puede deshacer.</p>
+            <div style="display: flex; justify-content: space-around;">
+                <button id="confirmar-si"
+                    style="background: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; color: #ff6b6b;">Sí,
+                    eliminar</button>
+                <button id="confirmar-no"
+                    style="background: rgba(255,255,255,0.3); border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; color: white;">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../JS_inventario/inventario_get.js"></script>
+</body>
+
+</html>

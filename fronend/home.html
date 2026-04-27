@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dulceria EMMI</title>
+    <link href="/CSS/estilo_home.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilo para el botón de cerrar sesión para que combine con tu diseño */
+        .btn-logout {
+            display: inline-block;
+            padding: 10px 25px;
+            /* Te sugiero ponerle 10px de padding arriba y abajo para que se vea más gordito y clickeable */
+            background-color: #6d5a5a;
+            /* Color café grisáceo de tus textos */
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            transition: background 0.3s;
+
+            /* 👇 LAS LÍNEAS MÁGICAS 👇 */
+            position: absolute;
+            /* Lo saca del flujo normal de la página */
+            top: 40.5px;
+            /* Distancia desde el borde superior */
+            right: 40px;
+            /* Distancia desde el borde derecho */
+        }
+
+        .btn-logout:hover {
+            background-color: #f3a6b1;
+            /* Cambia al rosa al pasar el mouse */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div style="text-align: right; width: 100%; max-width: 800px; margin: 0 auto;">
+            <a href="/logout" class="btn-logout">Cerrar Sesión</a>
+        </div>
+
+        <h1>🍭 ¡Bienvenid@, <span id="nombre-usuario">...</span>! ✨</h1>
+
+
+        <div class="tarjetas-container">
+            <a href="/screens_inventario/inventario.html">
+                <div class="tarjeta">
+                    <h2>Inventario</h2>
+                    <img src="/iconos/icono2.png" alt="Frasco de dulces">
+                </div>
+            </a>
+
+            <a href="/screens_usuarios/usuarios.html">
+                <div class="tarjeta">
+                    <h2>Agregar<br>Usuario</h2>
+                    <img src="/iconos/Icono3.png" alt="Icono de usuario">
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <script>
+        // Pedir al servidor el nombre del usuario logueado
+        fetch('/api/user')
+            .then(res => res.json())
+            .then(data => {
+                if (data.usuario) {
+                    document.getElementById('nombre-usuario').textContent = data.usuario;
+
+                    // Guardamos el ID
+                    localStorage.setItem('idUsuarioActual', data.id);
+
+                    // 👇 AGREGA ESTA LÍNEA para ver en la pantalla si el ID es correcto
+                    console.log("SISTEMA: He guardado el ID de sesión:", data.id);
+                }
+            });
+    </script>
+</body>
+
+</html>

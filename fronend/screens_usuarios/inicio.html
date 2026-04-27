@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dulcería EMMI - Login</title>
+    <style>
+        /* 1. Reset y centrado */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #fdf49a;
+            /* El amarillo que venimos usando */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            /* Evita que el cuadro pegue a los bordes en el celular */
+        }
+
+        /* 2. Caja de Login responsiva */
+        .login-box {
+            background: #eeeeee;
+            padding: 40px;
+            border-radius: 25px;
+            /* Bordes más redondeados como tus tarjetas */
+            width: 100%;
+            /* Ocupa el ancho disponible */
+            max-width: 450px;
+            /* Pero no crece más de esto en PC */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-box h1 {
+            margin-bottom: 30px;
+            color: #6d5051;
+            font-size: 28px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+            /* Alinea etiquetas a la izquierda */
+        }
+
+        label {
+            color: #6d5051;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        /* 3. Inputs más grandes y fáciles de tocar */
+        input {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid #ccc;
+            background: transparent;
+            padding: 12px 5px;
+            outline: none;
+            box-sizing: border-box;
+            font-size: 16px;
+            /* Evita el zoom automático en iPhone */
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-bottom-color: #f3a6b1;
+            /* Resalta en rosa al escribir */
+        }
+
+        /* 4. Botón llamativo */
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #f3a6b1;
+            border: none;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(243, 166, 177, 0.3);
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        button:hover {
+            background: #ef8e9d;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* AJUSTES PARA CELULARES MUY PEQUEÑOS */
+        @media (max-width: 400px) {
+            .login-box {
+                padding: 30px 20px;
+            }
+
+            .login-box h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-box">
+        <h1> Dulcería EMMI</h1>
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <label> Correo:</label>
+                <input type="email" name="correo" required>
+            </div>
+            <div class="input-group">
+                <label> Contraseña:</label>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit">Iniciar</button>
+        </form>
+    </div>
+</body>
+
+</html>
