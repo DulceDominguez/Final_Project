@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Estilos para el botón de regresar */
+.btn-regresar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ffb6c1;
+    color: #333;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.btn-regresar:hover {
+    background-color: #ff91a4;
+}
+
+/* El marco amarillo igual al de la pantalla de inicio */
+.contenedor {
+    width: 100%;
+    height: 100vh;
+    border: 40px solid #fdf49a;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos de la franja morada */
+.barra-superior {
+    background-color: #e3abf1;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.barra-superior h1 {
+    color: #6d5051;
+    font-size: 35px;
+}
+
+.espacio-vacio {
+    width: 60px;
+}
+
+/* El botón de "+" rosado */
+.btn-agregar {
+    background: none;
+    border: none;
+    color: #ff75a0;
+    font-size: 70px;
+    font-weight: 300;
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.2s;
+}
+
+.btn-agregar:hover {
+    transform: scale(1.1);
+    color: #ff4d85;
+}
+
+/* El fondo blanco que sobra abajo */
+.area-contenido {
+    flex-grow: 1;
+    background-color: white;
+    padding: 40px;
+    position: relative;
+}
+
+/* --- NUEVO CONTENEDOR PARA EL SCROLL DE LA TABLA --- */
+.contenedor-tabla-responsiva {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 20px;
+}
+
+/* --- ESTILOS DE LA TABLA --- */
+.tabla-inventario {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    min-width: 500px;
+    /* Evita que la tabla se aplaste demasiado */
+}
+
+.tabla-inventario th,
+.tabla-inventario td {
+    border: 2px solid black;
+    padding: 15px;
+}
+
+.tabla-inventario th {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* --- ESTILO DE LOS BOTONES DE LA TABLA --- */
+.btn-eliminar {
+    background-color: #ff6b81;
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn-eliminar:hover {
+    background-color: #ff4760;
+}
+
+.btn-modificar {
+    background-color: #e3abf1;
+    color: black;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-right: 5px;
+    /* Separación entre botones */
+}
+
+.btn-modificar:hover {
+    background-color: #d18ce0;
+    /* Un tono un poquito más fuerte para el hover */
+}
+
+
+/* ================================================================= */
+/* ============= MEDIA QUERIES (MAGIA PARA CELULAR) ================ */
+/* ================================================================= */
+
+@media screen and (max-width: 768px) {
+
+    /* Reducimos el marco amarillo para que no estorbe */
+    .contenedor {
+        border-width: 15px;
+        height: auto;
+        /* Permite que crezca si hay muchos dulces */
+        min-height: 100vh;
+    }
+
+    /* Acomodamos el botón regresar para que no flote feo */
+    .btn-regresar {
+        position: relative;
+        display: inline-block;
+        margin: 15px 15px 0 15px;
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    /* Achicamos la franja morada, el título y el botón de + */
+    .barra-superior {
+        padding: 0 15px;
+        margin-top: 15px;
+        /* Separación del botón regresar */
+    }
+
+    .barra-superior h1 {
+        font-size: 24px;
+    }
+
+    .btn-agregar {
+        font-size: 45px;
+    }
+
+    .espacio-vacio {
+        width: 45px;
+    }
+
+    /* Reducimos los espacios blancos gigantes */
+    .area-contenido {
+        padding: 15px;
+    }
+
+    /* Hacemos la letra de la tabla más chica para que quepa mejor */
+    .tabla-inventario th,
+    .tabla-inventario td {
+        padding: 10px 5px;
+        font-size: 13px;
+    }
+
+    /* Hacemos que la ventanita de advertencia no se salga del cel */
+    #modal-eliminar>div {
+        width: 90% !important;
+        padding: 20px !important;
+    }
+}

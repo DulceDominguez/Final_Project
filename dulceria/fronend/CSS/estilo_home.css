@@ -1,0 +1,88 @@
+/* Aplicamos el box-sizing a TODO para no tener problemas de tamaños */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    /* Usamos la fuente nueva */
+}
+
+a {
+    text-decoration: none;
+    color: #6d5051;
+
+}
+
+
+body {
+    color: #6d5051;
+    /* El color marrón del texto */
+    background-color: white;
+}
+
+.contenedor {
+    width: 100%;
+    height: 100vh;
+    border: 40px solid #fdf49a;
+    /* El borde amarillo */
+    display: flex;
+    flex-direction: column;
+    /* Apila el título arriba y lo demás abajo */
+}
+
+h1 {
+    background-color: #e3abf1;
+    /* Franja lila */
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    /* Le da espacio arriba y abajo en lugar de un height fijo */
+    font-size: 28px;
+}
+
+/* Este contenedor centra las dos tarjetas en el espacio que sobra */
+.tarjetas-container {
+    display: flex;
+    justify-content: center;
+    /* Las centra horizontalmente */
+    align-items: center;
+    /* Las centra verticalmente */
+    flex-grow: 1;
+    /* Hace que ocupe todo el espacio que sobra abajo del h1 */
+    gap: 100px;
+    /* La separación entre las dos tarjetas */
+}
+
+/* Estilo para ambas tarjetas (antes inventario y usuario) */
+.tarjeta {
+    background-color: #eeeeee;
+    /* Fondo gris claro */
+    width: 220px;
+    /* Un ancho adecuado */
+    height: 250px;
+    /* Un alto adecuado */
+    border-radius: 20px;
+    /* Esquinas redondeadas */
+    display: flex;
+    flex-direction: column;
+    /* Apila el texto y la imagen */
+    align-items: center;
+    /* Centra los elementos */
+    padding: 40px 20px;
+}
+
+.tarjeta h2 {
+    font-size: 26px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+    /* Espacio entre el texto y la imagen */
+    line-height: 1.2;
+}
+
+/* Tamaño para las imágenes dentro de las tarjetas */
+.tarjeta img {
+    width: 90px;
+    height: 120px;
+    /* Puedes ajustar este tamaño si tus imágenes quedan muy grandes/chicas */
+}
